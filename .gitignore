@@ -1,0 +1,50 @@
+# Rider IDE
+.idea/
+*.sln.iml
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/caches
+.idea/**/libraries
+.idea/**/deployment.xml
+.idea/**/modules.xml
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.app
+*.so
+*.dylib
+
+# Test results
+TestResults/
+*.trx
+*.log
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code settings (if any)
+.vscode/
+
+# Rider local files in projects
+*.iml
