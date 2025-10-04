@@ -1,4 +1,7 @@
-﻿using api.Core.Managers;
+﻿using api.Core.Builders;
+using api.Core.Managers;
+using api.Core.Models;
+using api.Core.Settings.SettingTypes;
 using api.Core.Stores;
 using NUnit.Framework;
 
@@ -21,10 +24,33 @@ public class Tests
     {
         int oldItemCount = _store.Count;
 
-        _settingManager.AddSetting("Setting123");
+        SettingBuilder builder = new("Setting123", new BooleanType());
+        Setting setting = builder.SetName("Setting 123")
+            .SetDescription("Setting Description")
+            .SetModule("Finance")
+            .SetDefaultValue("123")
+            .Build();
+        
+        _settingManager.AddSetting(setting);
+        
         int newItemCount = _store.Count;
         
         Assert.That(oldItemCount, Is.EqualTo(0));
         Assert.That(newItemCount, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void SettingStoreHasCorrectValue()
+    {
+        SettingBuilder builder = new("Setting123", new BooleanType());
+        Setting setting = builder.SetName("Setting 123")
+            .SetDescription("Setting Description")
+            .SetModule("Finance")
+            .SetDefaultValue("123")
+            .Build();
+        
+        _settingManager.AddSetting(setting);
+        
+        Assert.That(_store.Get("Setting123").Name, Is.EqualTo("Setting 123"));
     }
 }
