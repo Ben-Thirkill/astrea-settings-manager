@@ -22,6 +22,8 @@ public class Tests
     [Test]
     public void SettingStoreIsUpdated()
     {
+        _store.Clear();
+        
         int oldItemCount = _store.Count;
 
         SettingBuilder builder = new("Setting123", new BooleanType());
@@ -42,6 +44,8 @@ public class Tests
     [Test]
     public void SettingStoreHasCorrectValue()
     {
+        _store.Clear();
+        
         SettingBuilder builder = new("Setting123", new BooleanType());
         Setting setting = builder.SetName("Setting 123")
             .SetDescription("Setting Description")
