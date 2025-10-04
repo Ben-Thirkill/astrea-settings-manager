@@ -3,9 +3,6 @@ using api.Core.Managers;
 using api.Core.Models;
 using api.Core.Settings.SettingTypes;
 using api.Core.Stores;
-using NUnit.Framework;
-
-namespace tests;
 
 public class Tests
 {
