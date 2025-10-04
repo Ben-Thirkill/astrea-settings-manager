@@ -23,8 +23,8 @@ public class Tests
         
         int oldItemCount = _store.Count;
 
-        SettingBuilder builder = new("Setting123", new BooleanType());
-        Setting setting = builder.SetName("Setting 123")
+        Setting setting = new SettingBuilder("Setting123", new BooleanType())
+            .SetName("Setting 123")
             .SetDescription("Setting Description")
             .SetModule("Finance")
             .SetDefaultValue("123")
@@ -43,12 +43,13 @@ public class Tests
     {
         _store.Clear();
         
-        SettingBuilder builder = new("Setting123", new BooleanType());
-        Setting setting = builder.SetName("Setting 123")
+        Setting setting = new SettingBuilder("Setting123", new BooleanType())
+            .SetName("Setting 123")
             .SetDescription("Setting Description")
             .SetModule("Finance")
             .SetDefaultValue("123")
             .Build();
+
         
         _settingManager.AddSetting(setting);
         
