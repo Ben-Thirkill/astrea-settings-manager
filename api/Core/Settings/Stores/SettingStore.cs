@@ -18,6 +18,11 @@ public sealed class SettingStore
     {
         return _settings[id];
     }
+
+    public void Clear()
+    {
+        _settings.Clear();
+    }
     
     public static SettingStore Instance { get; } = new SettingStore();
     private SettingStore() {}
