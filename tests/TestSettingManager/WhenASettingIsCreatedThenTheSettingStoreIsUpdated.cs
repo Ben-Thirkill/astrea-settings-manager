@@ -4,7 +4,7 @@ using api.Core.Models;
 using api.Core.Settings.SettingTypes;
 using api.Core.Stores;
 
-public class Tests
+public class SettingCreatedTests
 {
 
     private SettingStore _store;
@@ -23,7 +23,7 @@ public class Tests
         
         int oldItemCount = _store.Count;
 
-        Setting setting = new SettingBuilder("Setting123", new BooleanType())
+        Setting setting = new SettingBuilder("Setting123", new BooleanSettingType())
             .SetName("Setting 123")
             .SetDescription("Setting Description")
             .SetModule("Finance")
@@ -43,7 +43,7 @@ public class Tests
     {
         _store.Clear();
         
-        Setting setting = new SettingBuilder("Setting123", new BooleanType())
+        Setting setting = new SettingBuilder("Setting123", new BooleanSettingType())
             .SetName("Setting 123")
             .SetDescription("Setting Description")
             .SetModule("Finance")
@@ -54,5 +54,6 @@ public class Tests
         _settingManager.AddSetting(setting);
         
         Assert.That(_store.Get("Setting123").Name, Is.EqualTo("Setting 123"));
+        
     }
 }
