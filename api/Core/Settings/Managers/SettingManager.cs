@@ -15,4 +15,9 @@ public class SettingManager
     {
         this._store.Add(setting);
     }
+
+    public Setting GetSetting(string id)
+    {
+        return this._store.Get(id);
+    }
 }
