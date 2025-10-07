@@ -1,3 +1,8 @@
+using api.Core.Builders;
+using api.Core.Managers;
+using api.Core.Models;
+using api.Core.Settings.SettingTypes;
+using api.Core.Stores;
 using api.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite("Data Source=database.db"));
+
+builder.Services.AddControllers();
 
 // Add Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -28,4 +35,18 @@ app.UseHttpsRedirection();
 app.MapGet("/health", () => Results.Ok(new { Status = "Running" }))
     .WithName("HealthCheck");
 
+app.MapControllers();
+
+Setting _setting = new SettingBuilder("show_contacts", new BooleanSettingType())
+    .SetDefaultValue("true")
+    .SetName("Show Company Contacts")
+    .SetDescription("Show the company contact details on the dashboard?")
+    .SetModule("finance_portal")
+    .Build();
+
+SettingManager _manager = new SettingManager(SettingStore.Instance);
+
+_manager.AddSetting(_setting);
+
 app.Run();
+

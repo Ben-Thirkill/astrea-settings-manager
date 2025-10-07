@@ -19,6 +19,11 @@ public sealed class SettingStore
         return _settings[id];
     }
 
+    public Dictionary<string, Setting> GetAll()
+    {
+        return _settings;
+    }
+    
     public void Clear()
     {
         _settings.Clear();

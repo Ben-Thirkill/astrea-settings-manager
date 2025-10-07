@@ -20,4 +20,9 @@ public class SettingManager
     {
         return this._store.Get(id);
     }
+
+    public Dictionary<string, Setting> GetAll()
+    {
+        return this._store.GetAll();
+    }
 }
