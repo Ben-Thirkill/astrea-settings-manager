@@ -5,7 +5,7 @@ But here is my vision so far.
 
 
 # How settings are created and rendered.
-A setting can be created on the backend using a fluent-style api. (in quick retrospect it might make sense to store them in a JSON/Yaml file instead of in code.
+A setting can be created on the backend using a fluent-style api. (*in quick retrospect it might make sense to store them in a JSON/Yaml file instead of in code.*)
 ```c#
 Setting _setting = new SettingBuilder("show_contacts", new BooleanSettingType())
     .SetDefaultValue("true")
