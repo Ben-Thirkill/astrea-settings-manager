@@ -3,3 +3,4 @@
  */
 
 export * from './lib/astrea-settings';
+export * from './lib/services/settings.service';

@@ -1,6 +1,7 @@
+import 'zone.js'; 
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AstreaSettings } from 'astrea-settings';
+import { AstreaSettings, SettingService } from 'astrea-settings';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,12 @@ import { AstreaSettings } from 'astrea-settings';
 })
 export class App {
   protected readonly title = signal('dummy-app');
+
+  constructor(private settingService: SettingService) {}
+
+  ngOnInit(): void {
+    this.settingService.getAllSettings().subscribe(users => {
+      console.log('Fetched users:', users);
+    });
+  }
 }
