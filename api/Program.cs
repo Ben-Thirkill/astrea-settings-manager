@@ -8,6 +8,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") 
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // Add services to the container
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite("Data Source=database.db"));
@@ -34,6 +45,8 @@ app.UseHttpsRedirection();
 // Example minimal API endpoint
 app.MapGet("/health", () => Results.Ok(new { Status = "Running" }))
     .WithName("HealthCheck");
+
+app.UseCors();
 
 app.MapControllers();
 
