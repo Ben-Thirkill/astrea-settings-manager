@@ -1,7 +1,7 @@
 import 'zone.js';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AstreaSettings, SettingComponent, SettingService } from 'astrea-settings';
+import { AstreaSettings, SettingComponent } from 'astrea-settings';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,6 @@ import { AstreaSettings, SettingComponent, SettingService } from 'astrea-setting
 export class App {
   protected readonly title = signal('dummy-app');
 
-  constructor(private settingService: SettingService) {}
+  constructor() {}
 
 }

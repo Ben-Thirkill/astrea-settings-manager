@@ -1,0 +1,21 @@
+.container {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.main-setting-title {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.setting-category-title {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #888;
+}
+
+/*# sourceMappingURL=app.css.map */

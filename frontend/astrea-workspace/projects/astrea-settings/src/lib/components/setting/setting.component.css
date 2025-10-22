@@ -1,0 +1,11 @@
+.setting-description-container .name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.setting-description-container .description {
+  font-size: 1rem;
+  color: #555;
+}
+
+/*# sourceMappingURL=setting.component.css.map */
