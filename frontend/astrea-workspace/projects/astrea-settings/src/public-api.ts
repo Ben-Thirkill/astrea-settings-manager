@@ -4,3 +4,4 @@
 
 export * from './lib/astrea-settings';
 export * from './lib/services/settings.service';
+export * from './lib/components/setting/setting.component'
