@@ -2,11 +2,15 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Setting} from '../../models/setting.model';
 import { SettingService } from '../../services/settings.service';
 import { signal, WritableSignal } from '@angular/core';
+import {TextSettingComponent} from '../setting-types/text-setting/text-setting.component';
 
 @Component({
-  selector: 'setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss']
+    selector: 'setting',
+    templateUrl: './setting.component.html',
+    imports: [
+        TextSettingComponent
+    ],
+    styleUrls: ['./setting.component.scss']
 })
 
 export class SettingComponent implements OnInit {

@@ -1,8 +1,11 @@
 @if (setting()) {
 
-    <div class="setting-description-container">
-        <p class="name">{{setting()?.name}}</p>
-        <p class="description">{{setting()?.description}}</p>
+    <div class="setting-container">
+        <div class="setting-description-container">
+            <p class="name">{{setting()?.name}}</p>
+            <p class="description">{{setting()?.description}}</p>
+        </div>
+        <text-setting></text-setting>
     </div>
 
 }

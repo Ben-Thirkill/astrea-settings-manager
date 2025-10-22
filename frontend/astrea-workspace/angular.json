@@ -137,7 +137,7 @@
               }
             ],
             "styles": [
-              "projects/dummy-app/src/styles.scss"
+                "projects/dummy-app/src/styles.scss",
             ]
           },
           "configurations": {

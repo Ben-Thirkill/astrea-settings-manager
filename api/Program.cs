@@ -50,11 +50,11 @@ app.UseCors();
 
 app.MapControllers();
 
-Setting _setting = new SettingBuilder("show_contacts", new BooleanSettingType())
+Setting _setting = new SettingBuilder("app_name", new BooleanSettingType())
     .SetDefaultValue("true")
-    .SetName("Show Company Contacts")
-    .SetDescription("Show the company contact details on the dashboard?")
-    .SetModule("finance_portal")
+    .SetName("App Name")
+    .SetDescription("What should the app be called?")
+    .SetModule("general_settings")
     .Build();
 
 SettingManager _manager = new SettingManager(SettingStore.Instance);

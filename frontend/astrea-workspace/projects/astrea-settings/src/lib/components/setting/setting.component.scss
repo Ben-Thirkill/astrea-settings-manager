@@ -1,12 +1,19 @@
-.setting-description-container {
-    .name {
-        font-weight:600;
-        font-size:1.5rem;
-        margin-bottom:0.5rem;
-    }
+.setting-container {
+    display:flex;
+    align-items:center;
 
-    .description {
-        font-size:1rem;
-        color:#555;
+    .setting-description-container {
+        width:50%;
+
+        .name {
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #555;
+        }
     }
 }
