@@ -5,7 +5,13 @@
             <p class="name">{{setting()?.name}}</p>
             <p class="description">{{setting()?.description}}</p>
         </div>
-        <text-setting></text-setting>
+
+        @if (setting()?.type == "string") {
+            <text-setting [serializedValue]="setting()!.defaultValue"></text-setting>
+        } @else if (setting()?.type == "boolean") {
+            <boolean-setting [serializedValue]="setting()!.defaultValue"></boolean-setting>
+        }
+
     </div>
 
 }

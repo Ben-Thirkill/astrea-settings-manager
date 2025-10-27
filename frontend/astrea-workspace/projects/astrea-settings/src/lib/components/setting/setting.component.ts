@@ -3,12 +3,14 @@ import {Setting} from '../../models/setting.model';
 import { SettingService } from '../../services/settings.service';
 import { signal, WritableSignal } from '@angular/core';
 import {TextSettingComponent} from '../setting-types/text-setting/text-setting.component';
+import {BooleanSettingComponent} from '../setting-types/boolean-setting/boolean-setting.component';
 
 @Component({
     selector: 'setting',
     templateUrl: './setting.component.html',
     imports: [
-        TextSettingComponent
+        TextSettingComponent,
+        BooleanSettingComponent
     ],
     styleUrls: ['./setting.component.scss']
 })
