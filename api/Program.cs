@@ -50,16 +50,24 @@ app.UseCors();
 
 app.MapControllers();
 
-Setting _setting = new SettingBuilder("app_name", new BooleanSettingType())
-    .SetDefaultValue("true")
+Setting _settingStr = new SettingBuilder("app_name", new StringSettingType())
+    .SetDefaultValue("Super Todo App")
     .SetName("App Name")
     .SetDescription("What should the app be called?")
     .SetModule("general_settings")
     .Build();
 
+Setting _settingBool = new SettingBuilder("show_contacts", new BooleanSettingType())
+    .SetDefaultValue("true")
+    .SetName("Show Contacts")
+    .SetDescription("Should we show users the contacts section?")
+    .SetModule("general_settings")
+    .Build();
+
 SettingManager _manager = new SettingManager(SettingStore.Instance);
 
-_manager.AddSetting(_setting);
+_manager.AddSetting(_settingStr);
+_manager.AddSetting(_settingBool);
 
 app.Run();
 
