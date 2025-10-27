@@ -11,6 +11,12 @@
   color: #000;
 }
 
+.setting-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .setting-category-title {
   margin-top: 4rem;
   margin-bottom: 2rem;
