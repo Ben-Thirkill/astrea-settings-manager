@@ -57,10 +57,10 @@ Setting _settingStr = new SettingBuilder("app_name", new StringSettingType())
     .SetModule("general_settings")
     .Build();
 
-Setting _settingBool = new SettingBuilder("show_contacts", new BooleanSettingType())
-    .SetDefaultValue("true")
-    .SetName("Show Contacts")
-    .SetDescription("Should we show users the contacts section?")
+Setting _settingBool = new SettingBuilder("dark_mode", new BooleanSettingType())
+    .SetDefaultValue("false")
+    .SetName("Dark Mode")
+    .SetDescription("Should dark mode be on by default?")
     .SetModule("general_settings")
     .Build();
 
