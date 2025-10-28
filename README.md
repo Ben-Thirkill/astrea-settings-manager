@@ -5,13 +5,13 @@ But here is my vision so far.
 
 
 # How settings are created and rendered.
-A setting can be created on the backend using a fluent-style api. (*in quick retrospect it might make sense to store them in a JSON/Yaml file instead of in code.*)
+A setting can be created on the backend using a fluent-style api.
 ```c#
-Setting _setting = new SettingBuilder("show_contacts", new BooleanSettingType())
-    .SetDefaultValue("true")
-    .SetName("Show Company Contacts")
-    .SetDescription("Show the company contact details on the dashboard?")
-    .SetModule("finance_portal")
+Setting _setting = new SettingBuilder("dark_mode", new BooleanSettingType())
+    .SetDefaultValue("false")
+    .SetName("Dark Mode")
+    .SetDescription("Should dark mode be on by default?")
+    .SetModule("general_settings")
     .Build();
 
 SettingManager _manager = new SettingManager(SettingStore.Instance);
@@ -26,31 +26,32 @@ This endpoint gets all of the settings in a specific module. A response might lo
 {
   "app_name": {
     "id": "app_name",
-    "module": "finance_portal",
+    "module": "general_settings",
     "name": "App Name",
-    "description": "What should we call this app in front of customers?",
-    "defaultValue": "Finance Portal",
+    "description": "What should the app be called?",
+    "defaultValue": "Super Todo App",
     "type": "text"
   },
-  "show_contacts": {
-    "id": "show_contacts",
-    "module": "finance_portal",
-    "name": "Show Company Contacts",
-    "description": "Show the company contact details on the dashboard?",
-    "defaultValue": "true",
+  "dark_mode": {
+    "id": "dark_mode",
+    "module": "general_settings",
+    "name": "Dark Mode",
+    "description": "Should dark mode be on?",
+    "defaultValue": "false",
     "type": "boolean"
   }
 }
 ```
 The frontend can pull these settings from the backend, store them and then using an NPM package they could do something like this
 ```html
-<h1>Finance Portal</h1>
+<h1>BASIC COPY</h1>
 <config-setting id="app_name"></config-setting>
-<config-setting id="show_contacts"></config-setting>
+<config-setting id="dark_mode"></config-setting>
 ```
-The npm package will have the logic to determine what to display using the settings pulled from the endpoint. Since we know the setting type (text, boolean etc) as long as we validation/serialisation methods, we can easilly retrieve setting values from the server and use them, or change them on the frontend and send them to the server for updates.  I imagine it might look something like this.
 
-<img width="722" height="214" alt="image" src="https://github.com/user-attachments/assets/e277826f-2066-4f5a-b7a2-02428cffe662" />
+The npm package will have the logic to determine what to display using the settings pulled from the endpoint. Since we know the setting type (text, boolean etc) as long as we validation/serialisation methods, we can easilly retrieve setting values from the server and use them, or change them on the frontend and send them to the server for updates. So far it looks something like this.
+
+<img width="1261" height="390" alt="image" src="https://github.com/user-attachments/assets/84a3246e-952b-484d-9e75-c5830879cc2f" />
 
 Doing it this way means it's super easy to add settings on the frontend, but we have the flexibility to move them wherever we want.
 
