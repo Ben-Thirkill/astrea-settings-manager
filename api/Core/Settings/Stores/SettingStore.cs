@@ -19,6 +19,11 @@ public sealed class SettingStore
         return _settings[id];
     }
 
+    public Boolean HasKey(string id)
+    {
+        return _settings.ContainsKey(id);
+    }
+
     public Dictionary<string, Setting> GetAll()
     {
         return _settings;
