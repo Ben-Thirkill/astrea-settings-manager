@@ -8,9 +8,9 @@ namespace api.Core.Settings.Services;
 public sealed class SettingValueService
 {
     private readonly SettingValueRepository _repository;
-
-    public static SettingValueService Instance { get; } = new SettingValueService(new SettingValueRepository());
-    private SettingValueService(SettingValueRepository repository)
+    private readonly SettingManager _settingManager =  new SettingManager(SettingStore.Instance);
+    
+    public SettingValueService(SettingValueRepository repository)
     {
         _repository = repository;
     }
@@ -21,24 +21,40 @@ public sealed class SettingValueService
         if (repoValue is not null)
             return (T)repoValue;
 
-        var settingManager = new SettingManager(SettingStore.Instance);
-        if (settingManager.SettingExists(settingId.ToString()))
+        if (!_settingManager.SettingExists(settingId.ToString()))
         {
-            var setting = settingManager.GetSetting(settingId.ToString());
-            var deserialized = setting.Type.Deserialize(setting.DefaultValue);
-            
-            await _repository.SaveAsync(clientApiKey, settingId, deserialized!);
-            return (T)deserialized!;
+            return default;
         }
+        
+        var setting = _settingManager.GetSetting(settingId.ToString());
+        var deserialized = setting.Type.Deserialize(setting.DefaultValue);
+            
+        await _repository.SaveAsync(clientApiKey, settingId, deserialized!);
+        return (T)deserialized!;
 
-        throw new KeyNotFoundException($"Setting '{settingId}' not found for client '{clientApiKey}'.");
     }
 
     public async Task SetSettingAsync(ClientApiKey clientApiKey, SettingId settingId, object value)
     {
+        if (!_settingManager.SettingExists(settingId.ToString()))
+        {
+            throw new Exception("Setting not found");
+        }
+        
         await _repository.SaveAsync(clientApiKey, settingId, value);
     }
-
+    public async Task SetSettingFromSerializedAsync(ClientApiKey clientApiKey, SettingId settingId, string serializedValue)
+    {
+        if (!_settingManager.SettingExists(settingId.ToString()))
+        {
+            throw new Exception("Setting not found");
+        }
+        
+        var setting = _settingManager.GetSetting(settingId.ToString());
+        var deserialized = setting.Type.Deserialize(serializedValue);
+        
+        await _repository.SaveAsync(clientApiKey, settingId, deserialized);
+    }
     public async Task ClearAllAsync()
     {
         await _repository.ClearAsync();

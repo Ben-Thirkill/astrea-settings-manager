@@ -1,6 +1,7 @@
 ﻿using api.Core.Builders;
 using api.Core.Managers;
 using api.Core.Models;
+using api.Core.Settings.Repositories;
 using api.Core.Settings.Services;
 using api.Core.Settings.SettingTypes;
 using api.Core.Stores;
@@ -35,7 +36,7 @@ public class SettingValueServiceTests
     {
         var clientApiKey = new ClientApiKey("apikey123");
         var settingId = new SettingId("Setting123");
-        var service = SettingValueService.Instance;
+        var service = new SettingValueService(SettingValueRepository.Instance);
 
         var result = await service.GetSettingAsync<string>(clientApiKey, settingId);
         Assert.That(result, Is.EqualTo("123"));
@@ -46,7 +47,7 @@ public class SettingValueServiceTests
     {
         var clientApiKey = new ClientApiKey("apikey123");
         var settingId = new SettingId("Setting123");
-        var service = SettingValueService.Instance;
+        var service = new SettingValueService(SettingValueRepository.Instance);
 
         await service.SetSettingAsync(clientApiKey, settingId, "1234");
         var result = await service.GetSettingAsync<string>(clientApiKey, settingId);
