@@ -3,9 +3,13 @@ using api.Core.Models;
 
 namespace api.Core.Settings.Repositories;
 
-public class SettingValueRepository
+public sealed class SettingValueRepository
 {
     private readonly ConcurrentDictionary<ClientApiKey, ConcurrentDictionary<SettingId, object>> _store = new();
+
+    public static SettingValueRepository Instance { get; } = new SettingValueRepository();
+
+    private SettingValueRepository() { }
 
     public Task<object?> GetAsync(ClientApiKey clientApiKey, SettingId settingId)
     {
